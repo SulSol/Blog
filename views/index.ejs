@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include('partials/header.ejs') %>
+ 
+    <div class="container">
+        <div class="main">
+            <div class="main-title">
+                <h1>Блоги по программированию</h1>
+                <p>Популярные и лучшие публикации по программированию для начинающих
+                    и профессиональных программистов и IT-специалистов.</p>
+            </div>
+
+            <% 
+                blogs.forEach(item => {
+            %>
+                <div class="main-news">
+                    <img src="<%=item.image%>" alt="">
+                    <a href="/detail/<%=item._id%>"> <h3><%=item.title%></h3> </a> 
+                    <p><%=item.description%></p>
+                    <div class="main-review-categories">
+                        <div class="categ">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span><%= new Date(item.createdAt).toLocaleDateString() %></span>
+                        </div>
+                        <div class="categ">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>21</span>
+                        </div>
+                        
+                        <div class="categ">
+                            <i class="fa-solid fa-message"></i>
+                            <span><%= item.commentCount %></span>
+                        </div>
+                        <div class="categ">
+                            <i class="fa-solid fa-comments"></i>
+                            <span><%=item.category.name%></span>
+                        </div>
+                        <div class="categ">
+                            <i class="fa-solid fa-user"></i>
+                            <span><%=item.author.full_name%></span>
+                        </div>
+                    </div>
+                </div>
+            <%
+                })
+            %>
+
+            <div class="pages">
+                <%
+                let localsString = ''
+                if(locals.category){
+                    localsString = `categ=${locals.category}&`
+                }
+                if(locals.search){
+                    localsString = `search=${locals.search}&`
+                }
+                for(let i = 0; i < pages; i++){
+                %> 
+                <a href="?<%=localsString%>page=<%= i %>"><%= i+1 %></a>
+
+                <%
+                }
+                %>
+            </div>
+
+
+        </div>
+
+        <div class="categories">
+            <h1>Категории</h1>
+            <ul>
+                <% categories.forEach(category => { %>
+                <li><a href="?categ=<%=category.key%>"><%=category.name%></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>

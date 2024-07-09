@@ -1,0 +1,136 @@
+.main{
+    padding: 20px;
+    background-color: white;
+    min-height: 80vh;
+    width: 70%;
+}
+
+.main-title{
+    padding: 9px 10%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-title h1, .categories h1, .my-blogs-title h1{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.main-title p{
+    font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.main-review, .main-news{
+    margin-bottom: 70px;
+    padding: 0 8%;
+}
+
+.pages{
+    padding: 0 8%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pages a{
+    text-decoration: none;
+    color: #00A2DC;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.pages a:hover{
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.main-review{
+    margin-bottom: 100px;
+}
+
+.main-review img, .main-news img{
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.main-review h3,  .main-news h3, .main-news a{
+    font-size: 27px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    text-decoration: none;
+    color: black;
+}
+
+.main-review a{
+    font-size: 27px;
+    font-weight: 400;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+}
+
+.main-news a{
+    transition: 0.3s;
+}
+
+.main-news h3:hover , .main-review h3:hover{
+    color: rgb(96, 96, 218);
+}
+
+.main-review p, .main-news p{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 25px;
+}
+
+.main-review-categories{
+    display: flex;
+    justify-content: space-between;
+}
+
+.categ i{
+    color: #000000;
+    opacity: 0.54;
+    font-size: 18px;
+}
+
+.categ{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.categ span{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.categories{
+    padding: 20px;
+    background-color: white;
+    height: fit-content;
+    box-sizing: border-box;
+    width: 28%;
+    box-shadow: 0px 2px 4px 0px #00000040;
+}
+
+.categories h1{
+    padding-top: 9px;
+    margin-bottom: 30px;
+}
+
+.categories li a{
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.categories li{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 45px;
+    border-bottom: 1px solid #E7E7E7;
+}

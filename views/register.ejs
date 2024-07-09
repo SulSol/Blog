@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include('partials/header.ejs') %>
+
+    <div class="container container-login container-register">
+        <div class="form-login form-register">
+            <h1>Регистрация</h1>
+            <form action="/api/signup" method="POST">
+                <input type="email" placeholder="Введите email" name="email" >
+                <input type="text" placeholder="Введите полное имя" name="full_name">
+                <input type="password" placeholder="Введите пароль" name="password">
+                <input type="password" placeholder="Подтвердите пароль" name="re_password">
+                <a href="/myBlogs"><button type="submit">Зарегистрироваться</button></a>
+            </form>
+        </div>
+    </div>
+    
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>

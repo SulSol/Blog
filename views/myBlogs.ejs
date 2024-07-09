@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+
+    <div class="container">
+        <div class="main">
+            <div class="my-blogs-title">
+                <h1>Мои блоги</h1>
+                <a href="/new">Новый блог</a>
+            </div>
+
+            <%
+            blogs.forEach(item => {
+            %>
+
+            <div class="main-review">
+                <img src="<%=item.image%>" alt="">
+                <div class="review">
+                    <a href="/detail/<%=item._id%>"> <h3><%=item.title%></h3> </a> 
+                    <div>
+                        <button class="btn-more" onclick="openEditBar()">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <span>Eще</span>
+                        <div class="edit-delete">
+                            <a href="/edit/<%=item._id%>">Редактировать</a>
+                            <a onclick="deleteBlogs('<%=item._id%>', '<%=item.author._id%>')">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><%=item.description%></p>
+                <div class="main-review-categories">
+                    <div class="categ">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span><%= new Date(item.createdAt).toLocaleDateString() %></span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>21</span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-message"></i>
+                        <span><%= item.commentCount %></span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-comments"></i>
+                        <span><%=item.category.name%></span>
+                    </div>
+                </div>
+            </div>
+            <%
+            })
+            %>
+        </div>
+
+        <div class="categories my-blogs-categories">
+            <img src="/img/photo.png" alt="">
+            <h4><%=user.full_name%></h4>
+            <p>В основном пишу про веб - разработку, на React & Redux<br><br>
+                285 постов за все время</p>
+
+            <%
+                if(loginUser.id == user.id){
+            %>  
+            <a href="" class="edit-btn">Редактировать</a>
+            <a href="/api/signout" class="log-out-btn">Выйти</a>
+            <%  
+                }
+            %>
+            
+        </div>
+    </div>
+    
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>

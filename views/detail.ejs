@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+
+    <div class="container">
+        <div class="main">
+            <div class="main-review">
+                <img style="padding-top: 30px; margin-bottom: 15px;" src="<%=blog.image%>" alt="">
+                <div style="margin-bottom:50px;" class="main-review-categories">
+                    <div class="categ">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span><%= new Date(blog.createdAt).toLocaleDateString() %></span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>21</span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-message"></i>
+                        <span>4</span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-comments"></i>
+                        <span><%=blog.category.name%></span>
+                    </div>
+                    <div class="categ">
+                        <i class="fa-solid fa-user"></i>
+                        <span><%=blog.author.full_name%></span>
+                    </div>
+                </div>
+                <div class="review">
+                    <h3><%=blog.title%></h3>
+
+                    <% 
+                    if(user._id == blog.author.id){
+                    %>
+                    <div>
+                        <button class="btn-more" onclick="openEditBar()">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <span>Eще</span>
+                        <div class="edit-delete">
+                            <a href="/edit/<%=blog._id%>">Редактировать</a>
+                            <a onclick="deleteBlogs('<%=blog._id%>', '<%=blog.author._id%>')">Удалить</a>
+                        </div>
+                    </div>
+                    <%
+                    }
+                    %>
+                </div>
+                
+                <p><%=blog.description%></p>
+
+                <div class="comments">
+                    
+                    <%
+                    if(comments){
+                    %>
+                    <h4>Комментарии:</h4>
+                    <div class="comments-list">
+                    <%
+                        comments.forEach(comment => {
+                    %>
+
+                        <div class="comment-item">
+                        <div class="commentator">
+                            <img src="/img/photo.png" alt="">
+                            <h3><%=comment.authorId.full_name%></h3>
+                        </div>
+                        <p><%=comment.text%></p>
+                        </div>
+
+                    <%
+                        })
+                    }
+                    %>
+                    </div>
+
+
+                    <%
+                    if(user._id){
+                    %>
+                    <form class="add-comment-form" onSubmit="sendComment(event)">
+                        <p>Написать комментарий:</p>
+                        <textarea id="comment-text"></textarea>
+                        <input type="hidden" value="<%=user._id%>" id="comment_author">
+                        <input type="hidden" value="<%=blog._id%>" id="comment_blog">
+                        <button type="submit">Отправить</button>
+                    </form>
+
+                    <%
+                    }else{
+                    %>
+                    <div class="not-logged-in">
+                        <p>Чтобы оставить комментарий <a href="/register">зарегистрируйтесь</a>, или <a href="/login">войдите</a> в аккаунт.</p>
+                    </div>
+                    <%
+                    }
+                    %>
+                </div>
+            </div>
+
+        </div>
+        <div class="categories">
+            <h1>Категории</h1>
+            <ul>
+                <% categories.forEach(category => { %>
+                <li><a href="/?categ=<%=category.key%>"><%=category.name%></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>
